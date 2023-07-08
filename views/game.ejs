@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html lang=en>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width , initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie-edge">
+<title>Casino War</title> 
+<link rel = "icon" href ="../img/coin.png"  type = "image/x-icon">
+<script src="../js/script.js" type="module"></script>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+<nav>
+	<div class="logo"><img src="../img/coin.png"></div>
+	<ul>
+		<% if (data) { %>
+			<li><a href="/logout" onclick="update_on_logout()" class="btn">Logout</a></li>
+		  <% } else { %>
+			  <li><a href="/login" class="btn">Log In</a></li>
+			<li><a href="/signup" class="btn">Sign up</a></li>
+		  <% } %>
+	</ul>
+</nav>
+<div class="info">
+	<ul>
+	<% if (data) { %>
+
+		<li><h1>Welcome, <%= data.user_name%></h1></li><li style="padding-left: 2%;"><a href="" class="btn bal" id="Balance">Bal:₹<%= balance %></a></li>
+		<%}%>
+		<li>	<select id="Bid" class="btn">
+			<option value="Bid">Bid</option>
+			<option value="5">₹5</option>
+			<option value="10">₹10</option>
+			<option value="20">₹20</option>
+			<option value="50">₹50</option>
+			<option value="100">₹100</option>
+			<option value="500">₹500</option>
+		</select>
+	</li>
+	</ul>
+	</div>
+
+<div class="main-container">
+<div class="container">
+	<div class="computer grid-line">Computer</div>
+		<div class="computer-deck deck grid-line"></div>
+	<div class="computer-card-slot  grid-line"></div>
+		
+	
+	<div class="player grid-line">Player</div>
+	<div class="player-deck deck grid-line"></div>
+	<div class="player-card-slot  grid-line"></div>			
+	</div>	
+	<div class="text-container">
+		<div class="text"></div>	
+	</div>
+	</div>
+	<div class="Play"><button class="playbtn" onclick='update()'>Play</button></div>	
+</body>
+<script>
+	window.onbeforeunload = function(event)
+    {
+        update();
+    };		
+	async function update_on_logout()
+	{
+		try{		
+			let balance=parseInt(document.getElementById("Balance").text.substring(5,));
+				console.log(balance);
+				let flag=1;
+					const res = await fetch('/update', { 
+					method: 'POST', 
+					body: JSON.stringify({ balance,flag}),
+					headers: {'Content-Type': 'application/json'}
+					});		
+		}
+		catch(err)
+		{
+			
+		}
+	}
+	async function update()
+{		
+	try{		
+		let balance=parseInt(document.getElementById("Balance").text.substring(5,));
+		let bid=(document.getElementById("Bid").value);
+		if(bid=="Bid")
+		{
+			alert("Select Bid Amount");
+			window.location.href = "/";
+		}
+		else{
+			bid=parseInt(bid);
+		if(bid>balance)
+		{
+			alert("Not enough balance");
+			window.location.href = "/";
+		}
+
+		else
+		{
+			console.log(balance);
+			let flag=1;
+				const res = await fetch('/update', { 
+				method: 'POST', 
+				body: JSON.stringify({ balance,flag}),
+				headers: {'Content-Type': 'application/json'}
+				});		
+		}
+	}
+	}
+	catch(err)
+	{
+		
+	}
+}
+</script>	
+</html>

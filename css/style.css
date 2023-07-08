@@ -1,0 +1,250 @@
+*,*::after,*::before
+{
+	
+	box-sizing:border-box;
+	user-select:none;
+}
+/* .grid-line
+{
+	
+} */
+h1{
+	color:honeydew;
+}
+.info
+{
+	margin:0;
+	padding:0;
+}
+#Bid,option
+{
+text-align: center;
+color:#0B0080;
+}
+.info ul li,#Bid,option
+{	
+	padding-top: 0;
+	display:inline-block;	
+}
+option
+{
+	color:black;
+	text-align: center;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: larger;
+}
+ul{
+	list-style-type: none;	
+  }
+  a{
+	text-decoration: none;
+	color:#0B0080;
+  }
+  nav{
+	  margin:0;
+	  padding:0;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+  nav ul{
+	display: flex;
+	align-items: center;
+  }
+  nav li{
+	margin-left: 1rem;
+  }
+  nav li a , .info li a,#Bid,option{
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 0.8em;
+	display: block;
+	margin-top:0;
+	padding: 1rem 1rem;
+	letter-spacing:0.6rem;
+  }
+  .btn,option{
+	border-radius: 4rem;
+	background: #FEE996;	
+}
+
+h1
+{	
+	font-weight: bolder;	
+}
+option{
+	font-size: 1rem;
+}
+body
+{
+	margin-top:0;
+	background-image:url("../img/background.jpg");
+	background-size: cover;	
+	display:flex;	
+	flex-direction:column;
+	justify-content:center;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif	
+	
+}
+.main-container
+{		
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	background-color:rgba(255,255,255,0.1);
+	box-shadow:1rem 1rem 6rem rgba(0,0,0,0.4);
+	width:100%; 
+}
+.container
+{
+	margin:0;
+	display:grid;
+	grid-template-columns:10rem 10rem;
+	grid-template-rows:3rem 12rem 3rem 12rem;
+	gap:1rem;	
+	width:100%;	
+	/*cursor:pointer;*/
+	justify-content:center;
+	padding-top:1rem;	
+	
+}
+.computer
+{
+	grid-row: 1;
+	grid-column: 1/span 2;
+	font-size:2rem;
+	text-align:Center;
+	color:white;
+}
+.player
+{
+	grid-row: 3;
+	grid-column: 1/span 2;
+
+	font-size:2rem;
+	text-align:center;
+	color:white;
+}
+.deck
+{
+	width:100%;
+	border:1px solid black;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-size:2rem;
+	border-radius:.5rem;	
+	user-select:none;
+}
+img
+{
+	margin-top: 0;
+	padding:0;
+	width:20vh;
+	max-width:200px;	
+}
+.computer-deck
+{
+	background-image:url("../img/card1.jpg");	
+  background-repeat: no-repeat;
+  background-size: 10rem 12rem;
+}
+.player-deck
+{
+	background-image:url("../img/card1.jpg");	
+  background-repeat: no-repeat;
+  background-size: 10rem 12rem;
+}
+.text
+{
+	grid-column:span 2;
+	display:flex;
+	font-size:3rem;
+	font-weight: bolder;	
+	padding-top:0;
+	padding-left:2rem;
+	justify-content:center;
+	align-items:center;		
+	color:Red;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.text-container
+{
+	margin-top: 0;
+	display:flex;
+	justify-content:center;
+	flex-direction:column;	
+}
+.bal
+{
+	display:flex;
+	font-weight: bolder;
+	font-size:2rem;	
+	padding-left:6rem;	
+	justify-content:center;
+	align-items:center;				
+}
+.Play
+{
+	display:flex;
+	font-size:3rem;		
+	justify-content:center;
+	align-items:center;	
+}
+.playbtn
+{		
+  background-image:url("../img/chip.png");	
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  border: none;
+  font-weight: bolder;
+  color: black;
+  padding: 2rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  margin: 1rem 0.5rem;
+  cursor: pointer;
+	border-radius:50%;
+}
+.card
+{
+	position:relative;
+	width:100%;
+	border:1px solid black;
+	border-radius:.5rem;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-size:4rem;
+	background-color:white;
+	height:100%;
+}
+.card.red
+{
+	color:red;		
+}
+.card.black
+{
+	color:black;
+}
+.card::before,.card::after
+{
+	position:absolute;
+	
+		content:attr(data-value);
+		font-size:1rem;
+}
+.card::before
+{
+	
+top:.5rem;
+left:.5rem;
+}
+.card::after
+{
+	bottom:.5rem;
+	right:.5rem;
+	transform:rotate(180deg);
+}

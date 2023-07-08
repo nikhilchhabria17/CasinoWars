@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device_width, initial_scale=1.0">
+		<meta charset="utf_8">
+		<title>Sign Up Form</title>
+		<link rel = "icon" href ="../img/coin.png" type = "image/x-icon">
+		<link rel="stylesheet" href="../css/main.css">
+	</head>
+	<body>
+		<nav>
+			<div class="logo"><center><img src="../img/coin.png"></center></div>
+				</nav>
+		<div class="container">
+			<form class="form" id="createAccount" method="POST" action="/signup">
+				<h1 class="form_title">Create Account</h1>				
+				<div class="form_error"></div>
+				<div class="form_input_group">
+					<input type="text" id="signupUsername" class="form_input" name="name" autofocus placeholder="Username">
+					<div class="form_input_error_message"></div>
+				</div>
+				<div class="form_input_group">
+					<input type="text" id="signupEmail" class="form_input" name ="email" autofocus placeholder="Email Address">					
+				</div>
+				<div class="email_error"></div>
+				<div class="form_input_group">
+					<input type="password" id="signupPassword" class="form_input" name="password" autofocus placeholder="Password">					
+				</div>			
+				<div class="form_input_group">
+					<input type="password" id="signupConfirm" class="form_input" autofocus name='cpassword' placeholder="Confirm password">					
+				</div>
+				<div class="password_error"></div>
+				<button class="form_button">Continue</button>
+				<p class="form_text">
+					<a class="form_link" href="/login">Already have an account? Log in.</a>
+				</p>
+			</form>
+		</div>
+		<script src="../js/main.js"></script>
+	</body>
+	<script>				
+			const form =document.querySelector("form");
+			const email_error=document.querySelector(".email_error");
+			const password_error=document.querySelector(".password_error");
+			form.addEventListener('submit',async (e)=>{
+				e.preventDefault();							
+				const email=form.email.value;												
+				const pwd=form.password.value;	
+				const cpwd=form.cpassword.value;				
+				const name=form.name.value;				
+				email_error.textContent='';			
+				password_error.textContent='';												
+				try
+				{								
+					const res=await fetch('/signup',{
+						method:'POST',
+						body:JSON.stringify({email,pwd,cpwd,name}),
+						headers:{'Content-Type':'application/json'}
+					});				
+					const data=await res.json();					
+					
+					if (data.errors) {
+						email_error.textContent = data.errors.email;
+						password_error.textContent = data.errors.password;
+					}
+					if (data.user) {
+						location.assign('/');
+					}
+				
+				}			
+				catch(err){
+					console.log(err);
+				}
+			})
+				
+	</script>
+</html>
